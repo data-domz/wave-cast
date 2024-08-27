@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ spot_name }} - Surf Forecast</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>{{ spot_name }} - Surf Forecast</h1>
+    <div class="forecast-details">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Surf Height (ft)</th>
+                    <th>Wind Speed (m/s)</th>
+                    <th>Wind Direction (°)</th>
+                    <th>Power</th>
+                    <th>Probability (%)</th>
+                    <th>Swell 0 (ft @ s)</th>
+                    <th>Swell 1 (ft @ s)</th>
+                    <th>Swell 2 (ft @ s)</th>
+                    <th>Swell 3 (ft @ s)</th>
+                    <th>Swell 4 (ft @ s)</th>
+                    <th>Swell 5 (ft @ s)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in beach_data %}
+                <tr>
+                    <td>{{ data.time }}</td>
+                    <td>{{ "%.1f" % data.surf_raw_min }} - {{ "%.1f" % data.surf_raw_max }}</td>
+                    <td>{{ "%.1f" % data.speed }}</td>
+                    <td>{{ data.direction }}</td>
+                    <td>{{ "%.1f" % data.power }}</td>
+                    <td>{{ "%.1f" % data.probability }}</td>
+                    <td>{{ "%.1f" % data.swells_0_height }} @ {{ data.swells_0_period }}s</td>
+                    <td>{{ "%.1f" % data.swells_1_height }} @ {{ data.swells_1_period }}s</td>
+                    <td>{{ "%.1f" % data.swells_2_height }} @ {{ data.swells_2_period }}s</td>
+                    <td>{{ "%.1f" % data.swells_3_height }} @ {{ data.swells_3_period }}s</td>
+                    <td>{{ "%.1f" % data.swells_4_height }} @ {{ data.swells_4_period }}s</td>
+                    <td>{{ "%.1f" % data.swells_5_height }} @ {{ data.swells_5_period }}s</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- New Section for Surf Report Image -->
+    <div class="surf-report">
+        <h2>Surf Report Image</h2>
+        <img src="/static/reports/{{ spot_name }}_surf_report.png" alt="{{ spot_name }} Surf Report" class="surf-report-image" />
+    </div>    
+
+    <div class="graphs">
+        <h2>Graphs</h2>
+        <img src="/beach/{{ spot_name }}/plot" alt="{{ spot_name }} Surf and Wind Speed Graphs" />
+    </div>
+</body>
+</html>

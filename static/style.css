@@ -1,0 +1,142 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: black; /* Set the background of the entire webpage to black */
+    color: white; /* Set the default font color to white */
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 40px;
+    position: relative;
+    padding-right: 220px;
+    color: white; /* Title font color */
+}
+
+.forecast-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.forecast {
+    width: 45%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 2px 2px 12px #aaa;
+    cursor: pointer;
+    background-color: white; /* Keep containers white */
+    color: black; /* Text color inside containers */
+}
+
+.forecast h3 {
+    margin-top: 0;
+    color: black; /* Title color inside containers */
+}
+
+.forecast-sections {
+    display: flex;
+    justify-content: space-between;
+}
+
+.forecast-section {
+    width: 48%;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.forecast-section.morning {
+    color: darkgreen;
+}
+
+.forecast-section.afternoon {
+    color: darkred;
+}
+
+.forecast-details {
+    margin-bottom: 20px;
+}
+
+.graphs {
+    margin-top: 20px;
+}
+
+#cube-container {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    overflow: hidden; /* Ensure no overflow */
+}
+
+canvas {
+    width: 200px !important; /* Make the cube larger */
+    height: 200px !important; /* Make the cube larger */
+    margin-top: -25px; /* Adjust to center the cube */
+    margin-left: -25px; /* Adjust to center the cube */
+    background-color: transparent !important; /* Remove the black background from the cube */
+}
+
+/* New style for surf report image */
+.surf-report-image {
+    width: 90%; /* Adjust the percentage as needed */
+    max-width: 1000px; /* Maximum width of the image */
+    height: auto; /* Maintain the aspect ratio */
+    display: block;
+    margin: 0 auto; /* Center the image */
+}
+
+/* Styles for the table and fixed scrollbar */
+.table-container {
+    position: relative;
+}
+
+.table-responsive {
+    max-height: 80vh; /* Limit the height of the table's container */
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: auto; /* Enable horizontal scrolling */
+}
+
+.fixed-scroll {
+    position: relative;
+}
+
+.fixed-scroll::after {
+    content: '';
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px; /* Adjust based on the height of your scrollbar */
+    background-color: black; /* Same as body background */
+    pointer-events: none; /* Let clicks pass through */
+}
+
+.fixed-scroll::-webkit-scrollbar {
+    height: 12px; /* Height of the horizontal scrollbar */
+}
+
+.fixed-scroll::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color of the scrollbar thumb */
+    border-radius: 10px;
+}
+
+.fixed-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Color when hovered */
+}
+
+.fixed-scroll::-webkit-scrollbar-track {
+    background: #222; /* Track color */
+}
+
+/* Make the table header sticky */
+.table-responsive thead th {
+    position: sticky;
+    top: 0;
+    background-color: black; /* Background color of the header */
+    z-index: 1; /* Ensure it stays above other elements */
+}

@@ -1,0 +1,32 @@
+# Ignore virtual environments
+venv/
+.env/
+
+# Ignore Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignore database files
+*.db
+
+# Ignore environment variable files
+.env
+
+# Ignore compiled files
+*.so
+*.egg
+*.egg-info
+
+# Ignore log files and temporary files
+*.log
+*.tmp
+*.bak
+
+# Ignore reports and generated images
+/static/reports/
+/static/images/
+
+# Ignore IDE-specific files
+.vscode/
+.idea/

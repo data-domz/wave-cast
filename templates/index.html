@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surf Forecast</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        async function fetchSurfData() {
+            const response = await fetch('/api/surf-forecast');
+            const data = await response.json();
+            console.log(data);  // Added for debugging
+
+            const container = document.getElementById('forecast-container');
+            container.innerHTML = ''; // Clear previous content
+
+            data.forEach(entry => {
+                const forecastDiv = document.createElement('div');
+                forecastDiv.classList.add('forecast');
+                forecastDiv.innerHTML = `
+                    <h3>${entry.spot_name}</h3>
+                    <div class="forecast-sections">
+                        <div class="forecast-section morning">
+                            <h4>Morning (6 AM - 12 PM)</h4>
+                            <hr>
+                            <p><strong>Average Surf Height:</strong> 
+                                ${(entry.morning_surf_raw_min ? entry.morning_surf_raw_min.toFixed(2) : 'N/A')} - 
+                                ${(entry.morning_surf_raw_max ? entry.morning_surf_raw_max.toFixed(2) : 'N/A')} ft
+                            </p>
+                            <p><strong>Wind Speed:</strong> 
+                                ${entry.morning_speed_kts ? entry.morning_speed_kts.toFixed(2) : 'N/A'} kts
+                            </p>
+                            <p><strong>Wind Direction:</strong> 
+                                ${entry.morning_direction ? entry.morning_direction : 'N/A'}
+                            </p>
+                            <p><strong>Power:</strong> 
+                                ${entry.morning_power ? entry.morning_power.toFixed(2) : 'N/A'}
+                            </p>
+                            <p><strong>Swell 0:</strong> 
+                                ${(entry.morning_swells_0_height ? entry.morning_swells_0_height.toFixed(2) : 'N/A')} ft @ 
+                                ${(entry.morning_swells_0_period ? entry.morning_swells_0_period : 'N/A')} s (Impact: 
+                                ${(entry.morning_swells_0_impact ? entry.morning_swells_0_impact.toFixed(2) : 'N/A')}, 
+                                Direction: ${(entry.morning_swells_0_direction ? entry.morning_swells_0_direction : 'N/A')})
+                            </p>
+                            <p><strong>Swell 1:</strong> 
+                                ${(entry.morning_swells_1_height ? entry.morning_swells_1_height.toFixed(2) : 'N/A')} ft @ 
+                                ${(entry.morning_swells_1_period ? entry.morning_swells_1_period : 'N/A')} s (Impact: 
+                                ${(entry.morning_swells_1_impact ? entry.morning_swells_1_impact.toFixed(2) : 'N/A')}, 
+                                Direction: ${(entry.morning_swells_1_direction ? entry.morning_swells_1_direction : 'N/A')})
+                            </p>
+                            <p><strong>Swell 2:</strong> 
+                                ${(entry.morning_swells_2_height ? entry.morning_swells_2_height.toFixed(2) : 'N/A')} ft @ 
+                                ${(entry.morning_swells_2_period ? entry.morning_swells_2_period : 'N/A')} s (Impact: 
+                                ${(entry.morning_swells_2_impact ? entry.morning_swells_2_impact.toFixed(2) : 'N/A')}, 
+                                Direction: ${(entry.morning_swells_2_direction ? entry.morning_swells_2_direction : 'N/A')})
+                            </p>
+                            <p><strong>Temperature:</strong> 
+                                ${(entry.morning_temperature ? entry.morning_temperature.toFixed(2) : 'N/A')} °C
+                            </p>
+                        </div>
+                        <div class="forecast-section afternoon">
+                            <h4>Afternoon (12 PM - 6 PM)</h4>
+                            <hr>
+                            <p><strong>Average Surf Height:</strong> 
+                                ${(entry.afternoon_surf_raw_min ? entry.afternoon_surf_raw_min.toFixed(2) : 'N/A')} - 
+                                ${(entry.afternoon_surf_raw_max ? entry.afternoon_surf_raw_max.toFixed(2) : 'N/A')} ft
+                            </p>
+                            <p><strong>Wind Speed:</strong> 
+                                ${entry.afternoon_speed_kts ? entry.afternoon_speed_kts.toFixed(2) : 'N/A'} kts
+                            </p>
+                            <p><strong>Wind Direction:</strong> 
+                                ${entry.afternoon_direction ? entry.afternoon_direction : 'N/A'}
+                            </p>
+                            <p><strong>Power:</strong> 
+                                ${entry.afternoon_power ? entry.afternoon_power.toFixed(2) : 'N/A'}
+                            </p>
+                            <p><strong>Swell 0:</strong> 
+                                ${(entry.afternoon_swells_0_height ? entry.afternoon_swells_0_height.toFixed(2) : 'N/A')} ft @ 
+                                ${(entry.afternoon_swells_0_period ? entry.afternoon_swells_0_period : 'N/A')} s (Impact: 
+                                ${(entry.afternoon_swells_0_impact ? entry.afternoon_swells_0_impact.toFixed(2) : 'N/A')}, 
+                                Direction: ${(entry.afternoon_swells_0_direction ? entry.afternoon_swells_0_direction : 'N/A')})
+                            </p>
+                            <p><strong>Swell 1:</strong> 
+                                ${(entry.afternoon_swells_1_height ? entry.afternoon_swells_1_height.toFixed(2) : 'N/A')} ft @ 
+                                ${(entry.afternoon_swells_1_period ? entry.afternoon_swells_1_period : 'N/A')} s (Impact: 
+                                ${(entry.afternoon_swells_1_impact ? entry.afternoon_swells_1_impact.toFixed(2) : 'N/A')}, 
+                                Direction: ${(entry.afternoon_swells_1_direction ? entry.afternoon_swells_1_direction : 'N/A')})
+                            </p>
+                            <p><strong>Swell 2:</strong> 
+                                ${(entry.afternoon_swells_2_height ? entry.afternoon_swells_2_height.toFixed(2) : 'N/A')} ft @ 
+                                ${(entry.afternoon_swells_2_period ? entry.afternoon_swells_2_period : 'N/A')} s (Impact: 
+                                ${(entry.afternoon_swells_2_impact ? entry.afternoon_swells_2_impact.toFixed(2) : 'N/A')}, 
+                                Direction: ${(entry.afternoon_swells_2_direction ? entry.afternoon_swells_2_direction : 'N/A')})
+                            </p>
+                            <p><strong>Temperature:</strong> 
+                                ${(entry.afternoon_temperature ? entry.afternoon_temperature.toFixed(2) : 'N/A')} °C
+                            </p>
+                        </div>
+                    </div>
+                `;
+                forecastDiv.addEventListener('click', () => {
+                    window.location.href = `/beach/${entry.spot_name}`;
+                });
+                container.appendChild(forecastDiv);
+            });
+        }
+        window.onload = fetchSurfData;
+    </script>
+</head>
+<body>
+    <h1>Surf Forecast for San Diego Beaches</h1>
+    <h2>8/28/2024</h2> <!-- Smaller heading for the date -->
+    
+    <!-- New Section for Raw Data -->
+    <div id="raw-data-link" class="raw-data-link">
+        <a href="/raw-data" class="btn btn-primary" style="color: red;">View Raw Surf Forecast Data</a>
+    </div>
+
+    <div id="forecast-container" class="forecast-container">Loading...</div>
+</body>
+</html>
