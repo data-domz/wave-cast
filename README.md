@@ -11,21 +11,26 @@ Surf_Cast is a web application designed to provide surfers and beachgoers with r
 6. Customizable Views: Users can view detailed forecasts for individual beaches, including specific surf and tide conditions.
    
 ### Project Structure
-app.py: The main Flask application file that routes the web requests and renders the pages.
-create_database.py: Script to create and populate the SQLite database with surf forecast data.
-tide_data.py: Script to fetch and store tide prediction data from NOAA.
-generate_image.py: Generates images or graphs related to surf and tide data.
-moving_ocean.py: Script related to ocean conditions (further context needed for specific functionality).
-read_database.py: Utility script for reading data from the SQLite database.
-surf_forecast.db: SQLite database storing surf forecast data.
-tide_data.db: SQLite database storing tide prediction data.
-templates: Directory containing HTML templates (index.html, beach.html, raw_data.html) for rendering web pages.
-static: Directory containing static assets like JavaScript files and CSS for the web interface.
-venv: Python virtual environment directory containing installed dependencies.
+- app.py: The main Flask application file that routes the web requests and renders the pages.
+- create_database.py: Script to create and populate the SQLite database with surf forecast data.
+- tide_data.py: Script to fetch and store tide prediction data from NOAA.
+- read_database.py: Utility script for reading data from the SQLite database.
+- surf_forecast.db: SQLite database storing surf forecast data.
+- tide_data.db: SQLite database storing tide prediction data.
+- templates: Directory containing HTML templates (index.html, beach.html, raw_data.html) for rendering web pages.
+- static: Directory containing static assets like JavaScript files and CSS for the web interface.
+- venv: Python virtual environment directory containing installed dependencies.
 
 ### Installation Prerequisites
-Python 3.x
-Flask
-SQLite
-Matplotlib
-pysurfline
+- Python 3.x
+- Flask
+- SQLite
+- Matplotlib
+- pysurfline
+
+Surf Forecaster:
+![image](https://github.com/user-attachments/assets/d59ea547-1a13-4d99-a90c-e6987c177b73)
+
+![image](https://github.com/user-attachments/assets/57e667d6-14bd-498e-ab4d-13d44cfa7ad5)
+
+
